@@ -1,0 +1,16 @@
+<jxb:bindings
+    xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    version="2.0"
+>
+    <jxb:bindings schemaLocation="ProjectDocumentsView.xsd" node="/xs:schema">
+        <jxb:globalBindings localScoping="toplevel"/>
+        <jxb:bindings node="//xs:complexType[@name='PMDocumentNodeType']">
+            <jxb:class name="PMDocumentNode"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:element[@name='children']">
+            <jxb:class name="PMNodeChildren"/>
+        </jxb:bindings>
+    </jxb:bindings>
+</jxb:bindings>

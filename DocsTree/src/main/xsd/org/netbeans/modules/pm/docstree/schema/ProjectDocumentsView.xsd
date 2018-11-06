@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<xs:schema
+    version="1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tns="http://www.netbeans.org/ns/project-documents-view/1"
+    targetNamespace="http://www.netbeans.org/ns/project-documents-view/1"
+    xsi:schemaLocation="http://www.netbeans.org/ns/project-documents-view/1 jar:file:/org/netbeans/modules/pm/docstree/schema/ProjectDocumentsView.xsd"
+    elementFormDefault="qualified"
+>
+    <xs:element name="project-documents-view">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="pm-document-node" type="tns:PMDocumentNodeType"/>
+            </xs:sequence>
+            <xs:attribute name="version" fixed="1.0"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="PMDocumentNodeType">
+        <xs:sequence>
+            <xs:element name="url" type="xs:string" minOccurs="0"/>
+            <xs:sequence minOccurs="0">
+                <xs:element name="children">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="pm-document-node" type="tns:PMDocumentNodeType" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="type" type="tns:PMDocsNodeTypeEnum" use="required"/>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:simpleType name="PMDocsNodeTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ROOT"/>
+            <xs:enumeration value="GROUP"/>
+            <xs:enumeration value="DOC"/>
+            <xs:enumeration value="OTHERS"/>
+            <xs:enumeration value="PROJECT"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

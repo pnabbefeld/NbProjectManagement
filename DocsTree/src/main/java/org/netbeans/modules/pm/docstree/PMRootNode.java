@@ -11,6 +11,8 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Action;
+import org.netbeans.modules.pm.docstree.action.ExportAction;
+import org.netbeans.modules.pm.docstree.action.ImportAction;
 import org.netbeans.modules.pm.docstree.action.SortChildrenAction;
 
 /**
@@ -44,6 +46,9 @@ public class PMRootNode extends AbstractPMNode {
             list.add(CreateNodeAction.create(this, PMNodeType.GROUP));
             list.add(null);
             list.add(new SortChildrenAction(this));
+            list.add(null);
+            list.add(new ImportAction(this));
+            list.add(new ExportAction(this));
             actions = list.toArray(new Action[list.size()]);
         }
         return actions;

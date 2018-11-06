@@ -22,7 +22,6 @@ import org.openide.util.lookup.InstanceContent;
 public abstract class AbstractPMNode extends AbstractNode {
 
     static Node createNode(PMNodePropertiesImpl props) {
-//        Children children = AbstractPMNode.createNodeChildren(props);
         switch (props.getNodeType()) {
             case DOC:
                 return new PMDocumentNode(props);
@@ -76,13 +75,11 @@ public abstract class AbstractPMNode extends AbstractNode {
 
     @Override
     public Image getIcon(int type) {
-        String path = imageBase + getIconBaseName() + ".png";
         return ImageUtilities.loadImage(imageBase + getIconBaseName() + ".png", false);
     }
 
     @Override
     public Image getOpenedIcon(int type) {
-        String path = imageBase + getIconBaseName() + "-open.png";
         return ImageUtilities.loadImage(imageBase + getIconBaseName() + "-open.png", false);
     }
 
