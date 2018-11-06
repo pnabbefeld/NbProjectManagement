@@ -8,6 +8,7 @@ package org.netbeans.modules.pm.docstree.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -61,9 +62,46 @@ public class PMChildList<E extends PMNodeIndex.IndexValueHolder> {
         synchronized (delegate) {
             delegate.add(index - indexBase, element);
             element.setIndexValue(new PMNodeIndex(index));
-            for (int i = index - indexBase + 1; i < delegate.size(); i++) {
-                delegate.get(i).getIndexValue().set(indexBase + i);
+            renumber(index - indexBase + 1);
+        }
+    }
+
+    @SuppressWarnings("SynchronizeOnNonFinalField")
+    public void remove(int index) {
+        int pos = index - indexBase;
+        if (delegate == null || delegate.size() <= pos) {
+            throw new NoSuchElementException();
+        }
+        synchronized (delegate) {
+            delegate.remove(pos);
+            renumber(index - indexBase);
+        }
+    }
+
+    @SuppressWarnings("SynchronizeOnNonFinalField")
+    public void move(int oldIndex, int newIndex) {
+        int oldPos = oldIndex - indexBase;
+        int newPos = newIndex - indexBase;
+        if (delegate == null || delegate.size() <= oldPos || delegate.size() <= newPos) {
+            throw new NoSuchElementException();
+        }
+        if (newPos != oldPos) {
+            synchronized (delegate) {
+                int min = newPos;
+                if (newPos > oldPos) {
+                    min = oldPos;
+                }
+                E moving = delegate.remove(oldPos);
+                delegate.add(newPos, moving);
+                renumber(min);
             }
+        }
+    }
+
+    private void renumber(int start) {
+        int n = delegate.size();
+        for (int i = start; i < n; i++) {
+            delegate.get(i).getIndexValue().set(indexBase + i);
         }
     }
 

@@ -5,9 +5,6 @@
  */
 package org.netbeans.modules.pm.docstree;
 
-import java.util.Collection;
-import org.netbeans.modules.pm.docstree.model.PMNodePropertiesImpl;
-
 /**
  *
  * @author Peter Nabbefeld
@@ -23,8 +20,4 @@ public interface PMNodeProperties {
     public String getUrl();
 
     public int getSize();
-
-    public Collection<PMNodePropertiesImpl> getChildren();
-
-    public PMNodePropertiesImpl getChild(String key);
 }

@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.AbstractAction;
-import javax.swing.Action;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectManager;
 import org.netbeans.api.project.ui.OpenProjects;
@@ -28,8 +27,8 @@ public class OpenProjectAction extends AbstractAction {
     private final AbstractPMNode node;
 
     public OpenProjectAction(AbstractPMNode node) {
+        super("Open Project");
         this.node = node;
-        putValue(Action.NAME, "Open Project");
     }
 
     @Override

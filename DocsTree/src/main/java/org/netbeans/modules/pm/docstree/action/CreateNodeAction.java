@@ -40,9 +40,9 @@ public class CreateNodeAction extends AbstractAction {
     private final PMNodeType[] allowedNodeTypes;
 
     private CreateNodeAction(AbstractPMNode node, PMNodeType[] allowedNodeTypes) {
+        super("Create Node ...");
         this.node = node;
         this.allowedNodeTypes = allowedNodeTypes;
-        putValue(Action.NAME, "Create Node ...");
     }
 
     @Override

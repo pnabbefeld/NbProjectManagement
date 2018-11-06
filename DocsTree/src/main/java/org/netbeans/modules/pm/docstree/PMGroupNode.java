@@ -9,6 +9,7 @@ import org.netbeans.modules.pm.docstree.action.CreateNodeAction;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Action;
+import org.netbeans.modules.pm.docstree.action.MoveNodeAction;
 import org.netbeans.modules.pm.docstree.model.PMNodePropertiesImpl;
 
 /**
@@ -38,6 +39,8 @@ public class PMGroupNode extends AbstractPMNode {
         if (actions == null) {
             List<Action> list = new ArrayList<>();
             list.add(CreateNodeAction.create(this));
+            list.add(null);
+            list.addAll(MoveNodeAction.createAll(this));
             actions = list.toArray(new Action[list.size()]);
         }
         return actions;

@@ -10,6 +10,8 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Action;
+import org.netbeans.modules.pm.docstree.action.DeleteNodeAction;
+import org.netbeans.modules.pm.docstree.action.MoveNodeAction;
 
 /**
  *
@@ -37,7 +39,9 @@ public class PMDocumentNode extends AbstractPMNode {
     public Action[] getActions(boolean context) {
         if (actions == null) {
             List<Action> list = new ArrayList<>();
-//            list.add(DeleteNodeAction.create(this));
+            list.add(null);
+            list.addAll(MoveNodeAction.createAll(this));
+            list.add(new DeleteNodeAction(this));
             actions = list.toArray(new Action[list.size()]);
         }
         return actions;
