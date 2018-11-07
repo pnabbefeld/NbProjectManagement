@@ -33,6 +33,7 @@
             </plugin>
         </plugins>
     </build>
+
     <modules>
         <module>DocsTree</module>
     </modules>
